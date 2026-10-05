@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Atlas + Express quickstart</title>
+    <style>
+      body { max-width: 440px; margin: 3rem auto; font-family: system-ui, sans-serif; }
+      input, button { display: block; width: 100%; margin: 0.4rem 0; padding: 0.6rem; box-sizing: border-box; }
+      .row { display: flex; gap: 0.5rem; }
+      .row button { margin: 0; }
+      pre { background: #f4f4f5; padding: 1rem; border-radius: 8px; overflow: auto; }
+    </style>
+  </head>
+  <body>
+    <h1>Atlas + Express</h1>
+    <p>Sign in with email + password against your Atlas instance.</p>
+    <input id="identifier" type="email" placeholder="you@example.com" autocomplete="username" />
+    <input id="password" type="password" placeholder="password" autocomplete="current-password" />
+    <button id="signin">Sign in</button>
+    <div class="row">
+      <button id="session">Read session</button>
+      <button id="signout">Sign out</button>
+    </div>
+    <h2>Result</h2>
+    <pre id="out">…</pre>
+    <p>
+      Try the API: <code>GET /api/me</code> (public) and <code>GET /api/protected</code>
+      (401 until signed in).
+    </p>
+    <script type="module" src="/signin.bundle.js"></script>
+  </body>
+</html>

@@ -1,0 +1,7 @@
+node_modules/
+dist/
+public/signin.bundle.js
+*.log
+.env
+.env.local
+.DS_Store

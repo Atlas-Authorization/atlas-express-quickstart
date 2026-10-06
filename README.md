@@ -5,12 +5,12 @@ A minimal [Express](https://expressjs.com) API protected by
 
 ## What's wired
 
-- **`src/server.js`** — `atlasMiddleware()` from `@atlasauth/express` verifies
+- **`src/server.ts`** — `atlasMiddleware()` from `@atlasauth/express` verifies
   the session JWT **locally** against the instance JWKS (cached in-process, no
   network call on the hot path) and decorates `req.atlas`.
   - `GET /api/me` reads `getAuth(req)` — public, reports signed-in state.
   - `GET /api/protected` is gated by `requireAuth()` — 401 when signed out.
-- **`public/` + `src/signin.js`** — a static sign-in page driving the Atlas
+- **`public/` + `src/signin.ts`** — a static sign-in page driving the Atlas
   Frontend API directly with the `@atlasauth/js` `FapiClient` + `initialFlow` /
   `advance` flow helpers (bundled by esbuild).
 
@@ -19,7 +19,7 @@ A minimal [Express](https://expressjs.com) API protected by
 ```sh
 npm install
 cp .env.example .env     # fill in your Atlas instance values
-npm run dev              # bundles the client, starts the server with --watch
+npm run dev              # bundles the client, starts the server with tsx watch
 ```
 
 Open http://localhost:3000, sign in, then call the API:

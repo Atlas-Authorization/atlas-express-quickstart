@@ -4,10 +4,25 @@
 // (cached in-process — a warm server makes no network call per request) and
 // decorates `req.atlas`. Read it with `getAuth(req)`; gate a route with
 // `requireAuth()`. There are NO Atlas endpoints called on the hot path.
-import express from 'express';
+import express, { type Request, type RequestHandler as ExpressHandler } from 'express';
 import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
-import { atlasMiddleware, getAuth, requireAuth } from '@atlasauth/express';
+import {
+  atlasMiddleware as atlasMw,
+  getAuth as getAtlasAuth,
+  requireAuth as requireAtlasAuth,
+  type AtlasAuth,
+  type AtlasExpressRequest,
+  type AtlasMiddlewareOptions,
+} from '@atlasauth/express';
+
+// @atlasauth/express types Express structurally (it doesn't import `express`),
+// and those minimal shapes don't line up with Express's real generics. These
+// three thin adapters are the only casts; they are runtime no-ops.
+const getAuth = (req: Request): AtlasAuth => getAtlasAuth(req as unknown as AtlasExpressRequest);
+const atlasMiddleware = (options: AtlasMiddlewareOptions): ExpressHandler =>
+  atlasMw(options) as unknown as ExpressHandler;
+const requireAuth = (): ExpressHandler => requireAtlasAuth() as unknown as ExpressHandler;
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 

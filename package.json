@@ -12,8 +12,8 @@
     "build": "npm run typecheck && npm run build:client"
   },
   "dependencies": {
-    "@atlasauth/express": "^0.1.0",
-    "@atlasauth/js": "^0.2.0",
+    "@atlasauth/express": "^0.6.0",
+    "@atlasauth/js": "^0.26.1",
     "express": "^4.21.2"
   },
   "devDependencies": {

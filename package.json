@@ -13,7 +13,7 @@
   },
   "dependencies": {
     "@atlasauth/express": "^0.6.0",
-    "@atlasauth/js": "^0.26.1",
+    "@atlasauth/js": "^0.27.0",
     "express": "^4.21.2"
   },
   "devDependencies": {
